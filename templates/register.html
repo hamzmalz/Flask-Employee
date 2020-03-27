@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content%}
+
+    <h1>Register</h1>
+    <br>
+    <a href="{{ url_for('home') }}">Home</a>
+    <br>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <div>
+                {{ form.name.label }}
+
+                {% if form.name.errors %}
+                    {{form.name}}
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.name}}
+                {% endif %}   
+            </div>
+            <div>
+                {{ form.email.label }}
+            
+                {% if form.email.errors %}
+                    {{form.email}}
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.email}}
+                {% endif %}    
+            </div>
+            <div>
+                {{ form.phone.label }}
+            
+                {% if form.phone.errors %}
+                    {{form.phone}}
+                    {% for error in form.phone.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.phone}}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.hourly.label }}
+            
+                {% if form.hourly.errors %}
+                    {{form.hourly}}
+                    {% for error in form.hourly.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.hourly}}
+                {% endif %}
+            </div>
+        </fieldset>
+       
+        {{ form.submit}}
+    </form>
+
+{% endblock content%}

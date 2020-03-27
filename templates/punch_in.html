@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content%}
+
+    <h1>Punch In</h1>
+    <br>
+    <div>
+        <a href="{{ url_for('home') }}">Home</a>
+        <br>
+        <a href="{{ url_for('register') }}">Register</a>
+    </div>
+    
+    <br>
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <div>
+                {{ form.name.label }}
+    
+                {% if form.name.errors %}
+                    {{form.name}}
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.name}}
+                {% endif %}   
+            </div>
+            <div>
+                {{ form.time_in.label }}
+   
+                {% if form.time_in.errors %}
+                    {{form.time_in}}
+                    {% for error in form.time_in.errors %}
+                       <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.time_in}}
+                {% endif %}   
+           </div>
+           
+        </fieldset>
+
+        {{ form.submit}}   
+    </form>
+
+{% endblock content%}
