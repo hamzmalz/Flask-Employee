@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content%}
-
-    <h1>Home</h1>
+<body class="body">
+    <h1 class="h1">Home</h1>
 
     <div>
         <a href="{{ url_for('register') }}"><h3>Register</h3></a>
@@ -14,8 +14,7 @@
     <div>
         <a href="{{ url_for('punch_out') }}"><h3>Punch Out</h3></a>
     </div>
-    
-    
-    
 
+
+</body>
 {% endblock content%}

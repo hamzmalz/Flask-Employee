@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from form import RegistrationForm, PunchInForm, PunchOutForm
+from datetime import datetime
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'password'
-app.config['SQL_DATABASE_URI'] = '_sqlite:///site.db'
+app.config['SQL_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
 
@@ -23,13 +24,15 @@ class Employee(db.Model):
 
 class Work(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    time_in = db.Column(db.Integer, unique=True, nullable=False)
-    time_out = db.Column(db.Integer, unique=True, nullable=False)
+    time_in = db.Column(db.Date, unique=True, nullable=False,
+                        default=datetime.utcnow)
+    time_out = db.Column(db.Date, unique=True, nullable=False,
+                         default=datetime.utcnow)
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'),
                             nullable=False)
 
     def __repr__(self):
-        return f"Name('{self.time_in}', '{self.time_out}')"               
+        return f"Name('{self.time_in}', '{self.time_out}')"          
 
 
 @app.route("/")
